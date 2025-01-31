@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+
+<div class="container">
+    <div class="column left">
+        <h1>Calcular</h1>
+        <form action="/Resultado" method="post">
+            <label for="N1">Número 1:</label>
+            <input type="number" name="N1"><br>
+            <label for="N2">Número 2:</label>
+            <input type="number" name="N2"><br>
+            <input type="submit" value="Calcular" class="btn btn-primary">
+        </form>
+    </div>
+    <div class="column right">
+        <h1>El resultado es {{resultado}}</h1>  
+    </div>
+</div>
+
+{% endblock %}

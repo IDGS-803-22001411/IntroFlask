@@ -1,10 +1,33 @@
-from flask import Flask
+from flask import Flask, render_template,request
 
 app=Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hola mundo!!"
+    grupo="IDGS803"
+    lista=["Juan","Pedro","Perez"]
+    return render_template("index.html",grupo=grupo,lista=lista)
+
+@app.route("/OperaBas")
+def Operas():
+    return render_template("OperaBas.html")
+
+@app.route("/Resultado", methods=["GET","POST"])
+def Resultado():
+    if request.method=="POST":
+        num1=request.form.get("N1")
+        num2=request.form.get("N2")
+        resultado=int(num2)+int(num1)
+        return render_template("OperaBas.html",resultado=resultado)
+
+
+@app.route("/ejemplo1")
+def ejemplo1():
+    return render_template("ejemplo1.html")
+
+@app.route("/ejemplo2")
+def ejemplo2():
+    return render_template("ejemplo2.html")
 
 @app.route("/hola")
 def hola():
@@ -31,6 +54,21 @@ def suma(n1,n2):
 def func(nom="pedro"):
     return "El nombre de Nom es "+nom
 
+@app.route("/foem1")
+def form1():
+    return '''
+            <form>
+            <label>Nombre:</lablel>
+            <input type="text" name="nombre placeholder="Nombre"
+            </br>
+            <label>Nombre:</lablel>
+            <input type="text" name="nombre placeholder="Nombre"
+            </br>
+            <label>Nombre:</lablel>
+            <input type="text" name="nombre placeholder="Nombre"
+            </br>
+        </form>
+        '''
 
 if __name__ == '_main_':
-    app.run(debug=True,port=300)
+    app.run(debug=True)
